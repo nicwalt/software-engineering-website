@@ -1,0 +1,502 @@
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nicholas Walton | Software Engineering Portfolio</title>
+<meta name="description" content="Portfolio of Your Name. Software engineering across cloud, data and hardware, from Raspberry Pi and ESP32 to AWS and Kubernetes.">
+<meta name="theme-color" content="#0e4a35">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nicholas Walton | Software Engineering Portfolio">
+<meta property="og:description" content="Software engineering across cloud, data and hardware: Raspberry Pi, ESP32, sensors and home networking.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e4a35'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23e0b44c' stroke-width='4'/%3E%3C/svg%3E">
+
+<style>
+  /* Palette comes from a printed circuit board: solder-mask green, gold pads, silkscreen white. */
+  :root {
+    --board: #0e4a35;
+    --board-deep: #0a3828;
+    --trace: #2f9770;
+    --gold: #e0b44c;
+    --silk: #f2f6f3;
+    --paper: #f2f5f3;
+    --ink: #0f2a20;
+    --muted: #476157;
+    --rule: #cdd8d2;
+    --sans: "Helvetica Neue", Helvetica, Arial, "Segoe UI", system-ui, sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, Menlo, "Liberation Mono", monospace;
+    --header-h: 4rem;
+    color-scheme: light;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    -webkit-text-size-adjust: 100%;
+    background: var(--paper);
+  }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 1.0625rem/1.6 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; }
+  h1, h2, h3 { text-wrap: balance; }
+  ul { margin: 0; padding: 0; list-style: none; }
+
+  .container { width: min(100% - 2.5rem, 72rem); margin-inline: auto; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+  }
+  .skip-link {
+    position: absolute; left: 1rem; top: -4rem; z-index: 100;
+    padding: .7rem 1rem; border-radius: 4px;
+    background: var(--gold); color: var(--ink); font-weight: 700; text-decoration: none;
+  }
+  .skip-link:focus { top: 1rem; }
+
+  :focus-visible { outline: 3px solid var(--board); outline-offset: 3px; }
+  .site-header :focus-visible,
+  .hero :focus-visible,
+  .github :focus-visible,
+  .site-footer :focus-visible { outline-color: var(--gold); }
+
+  /* Header */
+  .site-header { position: sticky; top: 0; z-index: 50; background: var(--board); color: var(--silk); }
+  .bar {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: .25rem 1.5rem; min-height: var(--header-h);
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: .7rem; padding: .5rem 0;
+    font-size: 1.15rem; font-weight: 700; letter-spacing: -.01em; text-decoration: none;
+  }
+  .brand .via { width: 14px; height: 14px; border: 3px solid var(--gold); border-radius: 50%; }
+  .nav { display: flex; flex-wrap: wrap; gap: .15rem; }
+  .nav a {
+    display: block; padding: .65rem .8rem; border-bottom: 2px solid transparent;
+    color: rgba(242, 246, 243, .82); font-size: .95rem; font-weight: 500; text-decoration: none;
+    transition: color .15s, border-color .15s;
+  }
+  .nav a:hover { color: #fff; border-bottom-color: rgba(242, 246, 243, .5); }
+  .nav a[aria-current="location"] { color: #fff; border-bottom-color: var(--gold); }
+
+  /* Buttons */
+  .btn {
+    display: inline-block; padding: .85rem 1.4rem; border: 2px solid transparent; border-radius: 4px;
+    font-size: 1rem; font-weight: 600; text-decoration: none;
+    transition: background-color .15s, border-color .15s, color .15s;
+  }
+  .btn-gold { background: var(--gold); color: var(--ink); }
+  .btn-gold:hover { background: #ecc86a; }
+  .btn-line { border-color: rgba(242, 246, 243, .6); color: var(--silk); }
+  .btn-line:hover { border-color: var(--silk); background: rgba(242, 246, 243, .12); }
+
+  /* Hero: the board */
+  .hero {
+    position: relative; overflow: hidden; background: var(--board); color: var(--silk);
+    padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(3.5rem, 8vw, 6rem);
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+    align-items: center; gap: 2.5rem clamp(2rem, 5vw, 5rem);
+  }
+  .hero-copy { min-width: 0; }
+  .hero h1 {
+    margin: 0; font-size: clamp(2.9rem, 6.4vw, 5.75rem);
+    font-weight: 800; line-height: .96; letter-spacing: -.04em;
+  }
+  .lede {
+    max-width: 32em; margin: 1.5rem 0 0;
+    font-size: clamp(1.05rem, 1.6vw, 1.3rem); line-height: 1.5; color: rgba(242, 246, 243, .9);
+  }
+  .cta { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+
+  /* The portrait sits on the board like a chip: gold leads, routed traces */
+  .chip { position: relative; width: min(100%, 30rem); aspect-ratio: 1; margin: 0; justify-self: end; }
+  .chip-board { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; overflow: visible; }
+  .chip-body {
+    position: absolute; left: 21.154%; top: 14.423%; width: 57.692%; height: 72.115%;
+    overflow: hidden; border-radius: 3px;
+    background: #dce8e1 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 375'%3E%3Crect width='300' height='375' fill='%23dce8e1'/%3E%3Ccircle cx='150' cy='150' r='56' fill='%230e4a35' fill-opacity='.85'/%3E%3Cpath d='M30 375c0-78 52-128 120-128s120 50 120 128z' fill='%230e4a35' fill-opacity='.85'/%3E%3C/svg%3E") center / cover no-repeat;
+  }
+  .chip-body img { width: 100%; height: 100%; object-fit: cover; }
+  .silk { fill: none; stroke: var(--silk); stroke-width: 1.5; opacity: .85; }
+  .silk-dot { fill: var(--silk); opacity: .85; }
+  .traces path { fill: none; stroke: var(--trace); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .leads rect { fill: var(--gold); }
+  .vias circle { fill: var(--board); stroke: var(--gold); stroke-width: 2.5; }
+
+  /* One intro sequence: chip appears, leads light up, traces are routed outwards */
+  @keyframes appear { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes route {
+    from { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    to   { stroke-dasharray: 1; stroke-dashoffset: 0; }
+  }
+  .chip-body { animation: appear .6s ease-out both; }
+  .silk, .silk-dot { animation: appear .5s ease-out .2s both; }
+  .leads rect { animation: appear .4s ease-out .35s both; }
+  .traces path { animation: route 1.6s cubic-bezier(.3, .6, .2, 1) .7s both; }
+  .vias circle { animation: appear .4s ease-out 2.1s both; }
+
+  /* Sections */
+  .section { padding: clamp(2.25rem, 5vw, 3.5rem) 0; scroll-margin-top: -1.5rem; }
+  .hero + .section { padding-top: clamp(3rem, 7vw, 5rem); }
+  .section:last-of-type { padding-bottom: clamp(4rem, 9vw, 6.5rem); }
+
+  .rule { position: relative; height: 14px; margin-bottom: clamp(1.75rem, 4vw, 2.75rem); }
+  .rule::before { content: ""; position: absolute; left: 7px; right: 0; top: 6px; height: 2px; background: var(--board); }
+  .rule::after {
+    content: ""; position: absolute; left: 0; top: 0; width: 14px; height: 14px;
+    border: 3px solid var(--board); border-radius: 50%; background: var(--gold);
+  }
+
+  .section-grid {
+    display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    gap: 1.5rem clamp(2rem, 6vw, 5rem);
+  }
+  .section-head h2 {
+    margin: 0; font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+    font-weight: 800; line-height: 1.05; letter-spacing: -.03em;
+  }
+  .section-head p { margin: .75rem 0 0; max-width: 20em; color: var(--muted); }
+
+  /* Work */
+  .project { padding: 1.5rem 0; border-top: 1px solid var(--rule); }
+  .project:first-child { padding-top: 0; border-top: 0; }
+  .project h3 { margin: 0 0 .5rem; font-size: clamp(1.35rem, 2.2vw, 1.75rem); font-weight: 700; line-height: 1.15; letter-spacing: -.02em; }
+  .project p { max-width: 56ch; margin: 0 0 1rem; }
+
+  .cells { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .cells li {
+    padding: .5rem .7rem; border: 1px solid var(--rule); border-radius: 3px; background: #fff;
+    font-family: var(--mono); font-size: .85rem; line-height: 1;
+  }
+
+  .github {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 1rem 2rem; margin-top: 2rem; padding: 1.25rem 1.5rem;
+    border-radius: 4px; background: var(--board); color: var(--silk);
+  }
+  .github p { margin: 0; font-size: 1.1rem; font-weight: 600; }
+
+  /* Expertise */
+  .spec { margin: 0; }
+  .spec-row {
+    display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); align-items: start;
+    gap: .75rem 1.5rem; padding: 1.1rem 0; border-top: 1px solid var(--rule);
+  }
+  .spec-row:first-child { padding-top: 0; border-top: 0; }
+  .spec dt { padding-top: .4rem; font-size: 1.05rem; font-weight: 700; }
+  .spec dd { margin: 0; }
+
+  /* About */
+  .statement {
+    max-width: 34em; margin: 0; font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+    font-weight: 500; line-height: 1.4; letter-spacing: -.015em;
+  }
+
+  /* Contact */
+  .contact-list li {
+    display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); align-items: baseline;
+    gap: .5rem 1rem; padding: 1.1rem 0; border-top: 1px solid var(--rule);
+  }
+  .contact-list li:first-child { padding-top: 0; border-top: 0; }
+  .contact-list .k { color: var(--muted); font-size: .95rem; }
+  .contact-list a {
+    color: var(--board); font-size: clamp(1.25rem, 3vw, 2rem); font-weight: 700; letter-spacing: -.02em;
+    overflow-wrap: anywhere; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .2em;
+  }
+  .contact-list a:hover {
+    background: var(--board); color: var(--silk); text-decoration-color: transparent;
+    box-shadow: 0 0 0 .2em var(--board);
+  }
+
+  /* Footer */
+  .site-footer { background: var(--board); color: var(--silk); padding: 2rem 0; }
+  .footer-grid {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 1rem 2rem; font-size: .95rem;
+  }
+  .footer-grid p { margin: 0; }
+  .footer-links { display: flex; gap: 1.75rem; }
+  .footer-links a {
+    font-weight: 600; text-decoration: underline; text-decoration-color: var(--gold);
+    text-decoration-thickness: 2px; text-underline-offset: .25em;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-grid time { font-family: var(--mono); font-size: .875rem; }
+
+  /* Responsive */
+  @media (max-width: 899px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: clamp(3rem, 13vw, 5rem); }
+    .chip { justify-self: center; width: min(100%, 26rem); }
+  }
+  @media (max-width: 760px) {
+    .section-grid { grid-template-columns: 1fr; }
+    .section-head p { max-width: 36em; }
+  }
+  @media (max-width: 640px) {
+    html { scroll-padding-top: 1rem; }
+    .site-header { position: static; }
+    .bar { padding: .35rem 0; }
+  }
+  @media (max-width: 560px) {
+    .spec-row { grid-template-columns: 1fr; gap: .5rem; }
+    .spec dt { padding-top: 0; }
+    .contact-list li { grid-template-columns: 1fr; }
+    .footer-grid { flex-direction: column; align-items: flex-start; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href="#top"><span class="via" aria-hidden="true"></span>Nicholas Walton</a>
+    <nav aria-label="Primary">
+      <ul class="nav">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero: photo and Software Engineering -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1 id="hero-title">Software<br>Engineering</h1>
+        <p class="lede">I&rsquo;m Nicholas Walton. My computer science background and hands-on hardware work let me build across the whole stack, from cloud services and databases down to Raspberry Pi, ESP32 and sensors.</p>
+        <div class="cta">
+          <a class="btn btn-gold" href="#work">See my work</a>
+          <a class="btn btn-line" href="#contact">Contact me</a>
+        </div>
+      </div>
+
+      <figure class="chip">
+        <svg class="chip-board" viewBox="0 0 520 520" aria-hidden="true" focusable="false">
+          <rect class="silk" x="102" y="67" width="316" height="391" rx="3"/>
+          <circle class="silk-dot" cx="94" cy="59" r="3.5"/>
+          <g class="traces">
+            <path pathLength="1" d="M88 110H62L42 90H24"/>
+            <path pathLength="1" d="M88 172H56L36 152H24"/>
+            <path pathLength="1" d="M88 234H24"/>
+            <path pathLength="1" d="M88 296H56L36 316H24"/>
+            <path pathLength="1" d="M88 358H62L42 378H24"/>
+            <path pathLength="1" d="M88 420H68L48 440H24"/>
+            <path pathLength="1" d="M432 110H462L492 80H1400"/>
+            <path pathLength="1" d="M432 172H450L480 142H1400"/>
+            <path pathLength="1" d="M432 234H640L670 204H1400"/>
+            <path pathLength="1" d="M432 296H450L480 326H1400"/>
+            <path pathLength="1" d="M432 358H462L492 388H1400"/>
+            <path pathLength="1" d="M432 420H474L504 450H1400"/>
+          </g>
+          <g class="leads">
+            <rect x="88" y="100" width="22" height="20" rx="2"/>
+            <rect x="88" y="162" width="22" height="20" rx="2"/>
+            <rect x="88" y="224" width="22" height="20" rx="2"/>
+            <rect x="88" y="286" width="22" height="20" rx="2"/>
+            <rect x="88" y="348" width="22" height="20" rx="2"/>
+            <rect x="88" y="410" width="22" height="20" rx="2"/>
+            <rect x="410" y="100" width="22" height="20" rx="2"/>
+            <rect x="410" y="162" width="22" height="20" rx="2"/>
+            <rect x="410" y="224" width="22" height="20" rx="2"/>
+            <rect x="410" y="286" width="22" height="20" rx="2"/>
+            <rect x="410" y="348" width="22" height="20" rx="2"/>
+            <rect x="410" y="410" width="22" height="20" rx="2"/>
+          </g>
+          <g class="vias">
+            <circle cx="24" cy="90" r="6"/>
+            <circle cx="24" cy="152" r="6"/>
+            <circle cx="24" cy="234" r="6"/>
+            <circle cx="24" cy="316" r="6"/>
+            <circle cx="24" cy="378" r="6"/>
+            <circle cx="24" cy="440" r="6"/>
+          </g>
+        </svg>
+        <!-- EDIT: save your photo as profile.jpg next to this file (or change the src below). The silhouette shows until a photo is found. -->
+        <div class="chip-body">
+          <img src="src\1753355082309.jpg" alt="Portrait of Your Name" width="300" height="375" decoding="async" onerror="this.remove()">
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section class="section" id="work" aria-labelledby="work-title">
+    <div class="container">
+      <div class="rule" aria-hidden="true"></div>
+      <div class="section-grid">
+        <div class="section-head">
+          <h2 id="work-title">Work</h2>
+          <p>Projects across hardware, networking and software.</p>
+        </div>
+        <div>
+          <!-- EDIT: replace these general descriptions with what you built, what you used and what came of it. -->
+          <ul class="projects">
+            <li class="project">
+              <h3>Raspberry Pi</h3>
+              <p>Projects built around the Raspberry Pi that connect code to the physical world, from reading sensors to running custom software on the device.</p>
+              <ul class="cells"><li>Raspberry Pi</li><li>Sensors</li><li>Python</li></ul>
+            </li>
+            <li class="project">
+              <h3>Home networking</h3>
+              <p>Planning, building and maintaining my own home network, with a focus on reliability, security and keeping an eye on how it performs.</p>
+              <ul class="cells"><li>Home networking</li><li>Monitoring</li></ul>
+            </li>
+            <li class="project">
+              <h3>Coding projects</h3>
+              <p>Software projects in Python, Java, C and C++, plus web applications with Next.js and Node.js.</p>
+              <ul class="cells"><li>Python</li><li>Java</li><li>C / C++</li><li>Next.js</li><li>Node.js</li></ul>
+            </li>
+          </ul>
+          <div class="github">
+            <p>More projects and source code are on my GitHub.</p>
+            <!-- EDIT: your GitHub profile link -->
+            <a class="btn btn-gold" href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">View my GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical expertise -->
+  <section class="section" id="expertise" aria-labelledby="expertise-title">
+    <div class="container">
+      <div class="rule" aria-hidden="true"></div>
+      <div class="section-grid">
+        <div class="section-head">
+          <h2 id="expertise-title">Technical expertise</h2>
+          <p>The languages, tools and hardware I work with.</p>
+        </div>
+        <dl class="spec">
+          <div class="spec-row">
+            <dt>Languages</dt>
+            <dd><ul class="cells"><li>Python</li><li>Java</li><li>C</li><li>C++</li></ul></dd>
+          </div>
+          <div class="spec-row">
+            <dt>Frameworks</dt>
+            <dd><ul class="cells"><li>Next.js</li><li>Node.js</li></ul></dd>
+          </div>
+          <div class="spec-row">
+            <dt>Cloud</dt>
+            <dd><ul class="cells"><li>AWS</li><li>Docker</li><li>Kubernetes</li></ul></dd>
+          </div>
+          <div class="spec-row">
+            <dt>Data</dt>
+            <dd><ul class="cells"><li>PostgreSQL</li><li>Monitoring</li></ul></dd>
+          </div>
+          <div class="spec-row">
+            <dt>Hardware</dt>
+            <dd><ul class="cells"><li>Raspberry Pi</li><li>ESP32</li><li>Home networking</li><li>Sensors</li></ul></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="container">
+      <div class="rule" aria-hidden="true"></div>
+      <div class="section-grid">
+        <div class="section-head">
+          <h2 id="about-title">About</h2>
+        </div>
+        <p class="statement">My computer science degree has given me a strong foundation in software engineering, and hardware is where my enthusiasm runs deepest. I love bringing code to life on the Raspberry Pi and ESP32, wiring up sensors, and building systems I can monitor and improve.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get in touch -->
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="rule" aria-hidden="true"></div>
+      <div class="section-grid">
+        <div class="section-head">
+          <h2 id="contact-title">Get in touch</h2>
+          <p>Happy to talk about roles, projects or hardware.</p>
+        </div>
+        <ul class="contact-list">
+          <li><span class="k">Email</span><a href="mailto:nwalt9211@gmail.com">nwalt9211@gmail.com</a></li>
+          <li><span class="k">Phone</span><a href="tel:+61468444897">+61 468 444 897</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <p>&copy; <span id="year">2026</span> Nicholas Walton</p>
+    <!-- EDIT: your LinkedIn and GitHub profile links -->
+    <ul class="footer-links">
+      <li><a href="https://www.linkedin.com/in/nicholas-cameron-walton/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li>
+      <li><a href="https://github.com/nicwalt" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a></li>
+    </ul>
+    <p><time id="today" datetime="2026-11-22">Sunday 22 November 2026</time></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // Footer: show today's date and the current year.
+  var now = new Date();
+  var pad = function (n) { return String(n).padStart(2, '0'); };
+  var today = document.getElementById('today');
+  if (today) {
+    today.textContent = now.toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    today.setAttribute('datetime', now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate()));
+  }
+  var year = document.getElementById('year');
+  if (year) year.textContent = now.getFullYear();
+
+  // Header: mark the section currently in view.
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav a[href^="#"]'));
+  if (!links.length || !('IntersectionObserver' in window)) return;
+
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+
+  function activate(id) {
+    links.forEach(function (a) { a.removeAttribute('aria-current'); });
+    if (byId[id]) byId[id].setAttribute('aria-current', 'location');
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) { if (entry.isIntersecting) activate(entry.target.id); });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+
+  ['top'].concat(Object.keys(byId)).forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  // The last section can be too short to reach the middle of the screen, so mark it at the bottom of the page.
+  window.addEventListener('scroll', function () {
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) activate('contact');
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
