@@ -45,16 +45,16 @@ h1,h2,h3,p,figure{margin:0}
 .bname{font-size:18px;font-weight:600;letter-spacing:-.01em;line-height:1.2;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .logoimg{width:40px;height:40px;background:#fff;display:grid;place-items:center;flex:none;overflow:hidden}
 .logoimg img{width:100%;height:100%;object-fit:contain;padding:5px}
-.dnav{display:none;align-items:center;gap:32px}
-.navl{position:relative;padding:6px 0;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.76);transition:color .25s ease}
+.dnav{display:none;align-items:center;gap:36px}
+.navl{position:relative;padding:6px 0;font-family:var(--font-mono);font-size:14px;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.76);transition:color .25s ease}
 .navl::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
 .navl:hover{color:#fff}.navl:hover::after{transform:scaleX(1)}
 .btn-out{display:inline-flex;align-items:center;height:40px;padding:0 18px;border:1px solid rgba(255,255,255,.55);color:#fff;
   font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.14em;transition:background .25s ease,color .25s ease,border-color .25s ease}
 .btn-out:hover{background:var(--gold);border-color:var(--gold);color:var(--green-d)}
-.burger{position:relative;width:40px;height:40px;border:1px solid rgba(255,255,255,.4);color:#fff;transition:background .25s ease,border-color .25s ease}
+.burger{position:relative;width:46px;height:46px;border:1px solid rgba(255,255,255,.4);color:#fff;transition:background .25s ease,border-color .25s ease}
 .burger:hover{background:rgba(255,255,255,.08)}
-.burger svg{position:absolute;left:11px;top:11px;width:18px;height:18px;transition:opacity .25s ease,transform .35s var(--ease)}
+.burger svg{position:absolute;left:13px;top:13px;width:20px;height:20px;transition:opacity .25s ease,transform .35s var(--ease)}
 .burger .x{opacity:0;transform:rotate(-90deg) scale(.7)}
 .burger[aria-expanded="true"] .x{opacity:1;transform:none}
 .burger[aria-expanded="true"] .m{opacity:0;transform:rotate(90deg) scale(.7)}
@@ -63,7 +63,7 @@ h1,h2,h3,p,figure{margin:0}
 .mpanel.open{grid-template-rows:1fr;opacity:1;visibility:visible;transform:none;transition-delay:0s}
 .mpanel-in{overflow:hidden;min-height:0}
 .mpanel a{display:block;padding:18px max(24px,env(safe-area-inset-left,0px));border-top:1px solid rgba(255,255,255,.12);
-  font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.8);transition:background .2s ease,color .2s ease,padding-left .25s var(--ease)}
+  font-family:var(--font-mono);font-size:14px;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.8);transition:background .2s ease,color .2s ease,padding-left .25s var(--ease)}
 .mpanel a:hover{background:rgba(255,255,255,.06);color:var(--gold);padding-left:calc(max(24px,env(safe-area-inset-left,0px)) + 6px)}
 @media (min-width:768px){.dnav{display:flex}.burger,.mpanel{display:none!important}}
 
@@ -83,22 +83,39 @@ h2{font-size:clamp(1.875rem,5vw,3rem);font-weight:600;letter-spacing:-.035em;lin
 /* hero */
 .hero{border-top:0;padding-block:clamp(56px,7vw,88px);text-align:left;background:var(--green);color:#fff}
 .hero .eyebrow{justify-content:flex-start;color:var(--gold);margin-bottom:28px}
-.hero .figcap{color:rgba(255,255,255,.75)}
+.hero .figcap{color:rgba(255,255,255,.75);font-size:13px;letter-spacing:.14em}
+@media (max-width:560px){.hero .figcap{font-size:10px;letter-spacing:.08em}.hero .shots-label{font-size:10px;letter-spacing:.08em}}
 .hero .figbtn{border-color:rgba(255,255,255,.25)}
 .hero .ph{border-color:rgba(255,255,255,.45);color:#fff;background:rgba(255,255,255,.08)}
 .hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
-.hbtn{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 26px;font-weight:600;font-size:15px;border:1px solid transparent;transition:background .25s ease,color .25s ease,border-color .25s ease}
+.hbtn{display:inline-flex;align-items:center;justify-content:center;height:54px;padding:0 28px;font-weight:600;font-size:16px;border:1px solid transparent;transition:background .25s ease,color .25s ease,border-color .25s ease}
 .hbtn.gold{background:#fff;border-color:#fff;color:var(--green-d)}
 .hbtn.line{border-color:rgba(255,255,255,.55);color:#fff}
 .hbtn.gold:hover,.hbtn.line:hover{background:var(--gold);border-color:var(--gold);color:var(--green-d)}
 .hero-top{display:grid;grid-template-columns:1fr;gap:40px;align-items:start}
-@media (min-width:900px){.hero-top{grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}}
-.hero-photo{width:100%;max-width:420px;aspect-ratio:4/5;justify-self:center;display:flex;align-items:flex-start}
-.hero-photo img{width:100%;height:100%;object-fit:contain;object-position:top}
+@media (min-width:900px){.hero-top{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:56px;align-items:center}}
+/* HEADSHOT SIZE: change --headshot-w (max width) to resize. Desktop and mobile are separate for easy tuning. */
+.hero{--headshot-w:560px;--headshot-w-mobile:400px}
+.hero-photo{width:100%;max-width:var(--headshot-w-mobile);justify-self:center;align-self:end;display:block;line-height:0}
+@media (min-width:900px){.hero-photo{max-width:var(--headshot-w);justify-self:end}}
+.hero-photo img{width:100%;height:auto;display:block;object-fit:contain;object-position:bottom}
+/* divider the headshot stands on; the photo's bottom edge sits flush against it */
+.hero-top{padding-bottom:0}
+/* breathing room between the buttons and the divider (desktop; on mobile the grid gap already does this) */
+@media (min-width:900px){.hero-copy{padding-bottom:clamp(32px,4vw,56px)}}
+.shots-label{display:flex;align-items:center;gap:10px;margin:28px 0 0;font-size:13px;line-height:1.5;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#fff}
+.shots-label i{display:block;width:8px;height:2px;background:var(--gold)}
+.shots-label+.shots{margin-top:20px}
+.hero-divider{position:relative;height:1px;background:rgba(255,255,255,.35);margin:0}
+.hero-divider::before{content:"";position:absolute;left:0;top:-1px;width:56px;height:3px;background:var(--gold)}
 .ph{width:100%;height:100%;border:1px dashed var(--green-2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--green-2);background:rgba(255,255,255,.55);text-align:center;padding:16px}
 .ph svg{width:96px;height:96px;opacity:.6}
-h1{font-size:clamp(2.5rem,6.5vw,4.25rem);font-weight:600;line-height:.95;letter-spacing:-.04em;max-width:15ch;margin:0;text-wrap:balance}
+h1{font-size:clamp(3rem,8vw,5.5rem);font-weight:600;line-height:.95;letter-spacing:-.04em;max-width:15ch;margin:0;text-wrap:balance}
 h1 .w{display:inline-block;white-space:nowrap}
+h1 .h1-role{display:block;font-size:.66em;margin-top:.30em}
+/* hero name stays on one line: its size is tied to the width of the text column */
+.hero-copy{container-type:inline-size}
+.hero h1{font-size:clamp(2.25rem,8vw,4.5rem);font-size:clamp(2.25rem,13.2cqw,5.5rem);max-width:none;white-space:nowrap;text-wrap:nowrap}
 h1 .l{display:inline-block;animation:wave 5s ease-in-out infinite;animation-delay:calc(var(--i) * .06s)}
 @keyframes wave{0%{color:#f3f8f5}9%{color:var(--gold)}18%,100%{color:#f3f8f5}}
 .sub{font-size:clamp(16px,2vw,18px);color:rgba(255,255,255,.88);max-width:36rem;margin:28px 0 0;line-height:1.6}
@@ -197,8 +214,9 @@ footer{background:var(--green);color:#fff;border-top:0}
 .hdr-in{gap:16px}
 @media (min-width:768px){.hdr-in{gap:32px}}
 .social{display:flex;gap:10px;flex:none}
-.soc{width:38px;height:38px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.42);color:#fff;transition:background .25s ease,color .25s ease,border-color .25s ease}
-.soc svg{width:18px;height:18px}
+.soc{width:46px;height:46px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.42);color:#fff;transition:background .25s ease,color .25s ease,border-color .25s ease}
+.soc svg{width:22px;height:22px}
+@media (max-width:560px){.soc{width:40px;height:40px}.soc svg{width:20px;height:20px}.burger{width:42px;height:42px}.burger svg{left:11px;top:11px}}
 .soc:hover{background:var(--gold);border-color:var(--gold);color:var(--green-d)}
 .gh-banner{margin-top:56px;background:var(--green);color:#fff;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .gh-banner p{font-size:clamp(1rem,2.2vw,1.125rem);font-weight:600;letter-spacing:-.01em;min-width:0}
@@ -341,9 +359,9 @@ var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce
 /* ---------- sample content ---------- */
 var SAMPLE={
   settings:{
-    name:'Nicholas Walton',role:'Software Engineer',email:'nwalt9211@gmail.com',phone:'+61 468 444 897',location:'Gold Coast, Australia',logo:'',github:'https://github.com/nicwalt',linkedin:'https://www.linkedin.com/in/nicholas-cameron-walton/',
-    heroTitle:'Software engineering, built to last.',
-    heroSub:'I’m Nicholas Walton. My computer science background and hands-on hardware work let me build across the whole stack, from cloud services and databases down to Raspberry Pi, ESP32 and sensors.',
+    name:'Nicholas Walton',email:'nwalt9211@gmail.com',phone:'+61 468 444 897',location:'Gold Coast, Australia',logo:'',github:'https://github.com/nicwalt',linkedin:'https://www.linkedin.com/in/nicholas-cameron-walton/',
+    heroTitle:'Nicholas Walton Software Engineer',
+    heroSub:'"I’m Nicholas Walton, a computer science graduate with experience spanning software development, infrastructure and hardware. I enjoy building solutions across the stack, from cloud services and databases to Raspberry Pi, ESP32 and embedded systems.',
     aboutHeading:'Building practical solutions, from software to infrastructure.',
     aboutBody:'I’m a Computer Science graduate with a practical interest in software development, IT systems and networking. I enjoy understanding how things work and building solutions that are useful, reliable and straightforward to maintain.\nDuring my studies, I worked on projects ranging from a Python-based linguistic complexity tool to applications built from scratch in C++ and Python. I also earned a Distinction for a Forest Health Monitoring project. Outside coursework, I built and configured a Raspberry Pi 5 NAS using Linux and OpenMediaVault, including storage and SMB file sharing.\nAlongside my technical work, around five years of customer-facing experience have helped me develop clear communication, patience and confidence helping people solve problems. I’m keen to keep developing in software, IT support and infrastructure, and bring that mix of technical curiosity and people skills to a team.',
     expertise:[
@@ -431,11 +449,15 @@ function fig(url,title,sub,alt,cls,eager){
 function intro(n,label,h,lead){
   return '<div class="intro"><div class="eyebrow mono"><span>'+n+'</span><i></i><span>'+label+'</span></div><div class="intro-row"><h2>'+h+'</h2>'+(lead?'<p class="lead">'+lead+'</p>':'')+'</div></div>'}
 
+function heroTitleHTML(s){
+  var t=String(s.heroTitle), nm=t.indexOf(s.name)===0?s.name:t, rest=t.slice(nm.length).trim();
+  return letters(nm)+(rest?'<span class="h1-role">'+letters(rest)+'</span>':'');
+}
 function renderSite(){
   FIGS=[];
   var s=S.settings,ps=S.projects.slice().sort(function(a,b){return a.sort-b.sort});
   var tel=String(s.phone).replace(/[^\d+]/g,'');
-  var heroLabels=['Raspberry Pi 5','Sensors','Controller board'];
+  var heroLabels=['3D Printing & Hardware','Chess','Indoor Rock Climbing'];
   var h='';
   h+='<header class="hdr"><div class="wrap hdr-in">'+
     '<a class="brand" href="#top" data-scroll="top" aria-label="'+esc(s.name)+' — back to top">'+markHTML(s)+'<span class="bname">'+esc(s.name)+'</span></a>'+
@@ -446,10 +468,12 @@ function renderSite(){
   h+='<main id="top">';
   h+='<section class="hero"><div class="wrap"><div class="hero-top"><div class="hero-copy">'+
     '<p class="eyebrow mono pre rise" style="--d:.05s">'+esc(s.role)+'</p>'+
-    '<h1 class="pre rise" style="--d:.05s" aria-label="'+esc(s.heroTitle)+'">'+letters(s.heroTitle)+'</h1>'+
+    '<h1 class="pre rise" style="--d:.05s" aria-label="'+esc(s.heroTitle)+'">'+heroTitleHTML(s)+'</h1>'+
     '<p class="sub pre rise" style="--d:.18s">'+esc(s.heroSub)+'</p>'+
     '<div class="hero-btns pre rise" style="--d:.3s"><a class="hbtn gold" href="#work" data-scroll="work">See my work</a><a class="hbtn line" href="#contact" data-scroll="contact">Contact me</a></div></div>'+
-    '<div class="hero-photo pre rise" style="--d:.2s"><img src="src/headshot.jpg" alt="Portrait of '+esc(s.name)+'"></div></div>'+
+    '<div class="hero-photo pre rise" style="--d:.2s"><img src="src/headshot.png" alt="Portrait of '+esc(s.name)+'"></div></div>'+
+    '<div class="hero-divider" aria-hidden="true"></div>'+
+    '<h2 class="shots-label mono pre rise" style="--d:.35s">Some of my interests</h2>'+
     '<div class="shots">'+[5,6,7].map(function(n,i){return '<figure class="pre rise" style="--d:'+(0.42+0.12*i).toFixed(2)+'s">'+fig(src('image'+n+'.avif'),heroLabels[i],'Hardware diagram','Circuit diagram: '+heroLabels[i],'r45',true)+'<figcaption class="mono figcap">'+heroLabels[i]+'</figcaption></figure>'}).join('')+'</div>'+ 
     '</div></section>';
   h+='<section class="sec" id="work"><div class="wrap">'+intro('01','Selected work','Things I&rsquo;ve built and shipped.','A few projects across web, mobile, infrastructure and hardware.')+
@@ -473,7 +497,7 @@ function renderSite(){
     '<a class="ctile" href="'+esc(safeUrl(s.github))+'" target="_blank" rel="noopener noreferrer"><span class="mono">GitHub</span><span class="cval">View GitHub profile</span>'+I.up+'</a></div>'+
     '<p class="mono based">Based in '+esc(s.location)+'</p></div></section>';
   h+='</main>';
-  h+='<footer><div class="wrap fgrid"><div><div class="fname">'+markHTML(s)+'<span>'+esc(s.name)+'</span></div><p class="mono" style="margin-top:10px">'+esc(s.role)+'</p><p>Building web applications, backend systems and infrastructure.</p><div class="social" style="margin-top:20px">'+socials(s)+'</div></div>'+
+  h+='<footer><div class="wrap fgrid"><div><div class="fname">'+markHTML(s)+'<span>'+esc(s.name)+'</span></div><p class="mono" style="margin-top:10px">'+esc(s.role)+'</p><p>AI tools were used for photographic enhancements.</p><div class="social" style="margin-top:20px">'+socials(s)+'</div></div>'+
     '<div><h3>Navigate</h3><ul>'+NAV.map(function(n){return '<li><a href="#'+n[0]+'" data-scroll="'+n[0]+'">'+n[1]+'</a></li>'}).join('')+'</ul></div>'+
     '<div><h3>Studio</h3><ul><li><a href="mailto:'+esc(s.email)+'">'+esc(s.email)+'</a></li><li><a href="tel:'+esc(tel)+'">'+esc(s.phone)+'</a></li><li>'+esc(s.location)+'</li></ul></div></div>'+
     '<div class="fbar"><div class="wrap mono"><span>&copy; 2026 '+esc(s.name)+'</span></div></div></footer>';
